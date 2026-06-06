@@ -51,7 +51,7 @@ const Navbar = () => {
     useEffect(() => {
         const { cartData } = getCartData();
         dispatch(updateCartData(cartData));
-    }, [])
+    }, [dispatch])
 
     const handleSearch = (e) => {
         e.preventDefault(); // Prevent default form submission

@@ -159,7 +159,7 @@ const ProductDetailPage = () => {
     };
 
     fetchOffersBySKU();
-  }, [skuID]);
+  }, [skuID, product.price]);
 
 
 

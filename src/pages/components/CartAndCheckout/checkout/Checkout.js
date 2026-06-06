@@ -98,6 +98,7 @@ const Checkout = () => {
     calculateTotalBill(cartData);
     dispatch(updateCartData(cartData));
     dispatch(updateAddressData(address));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (loading ? <Loader /> :
