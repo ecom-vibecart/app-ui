@@ -15,7 +15,7 @@ const categories = [
     id: 1,
     name: "Jackets",
     image:
-      "https://steemitimages.com/640x0/https://cdn.steemitimages.com/DQmW8jW1ZPMTkYEE3ZcWAHogrJ8cSb6VEqu42NDP4Cx6zsq/Mens_Vapor_Denim_Jacket_USE_1024x1024.jpg",
+      "https://cdn.steemitimages.com/DQmW8jW1ZPMTkYEE3ZcWAHogrJ8cSb6VEqu42NDP4Cx6zsq/Mens_Vapor_Denim_Jacket_USE_1024x1024.jpg",
   },
   {
     id: 2,
@@ -197,6 +197,7 @@ const Home = () => {
                         }
                         className="card-img-top"
                         alt={product.itemName}
+                        onError={(e) => { e.target.onerror = null; e.target.src = defaultImage; }}
                       />
                       <div className="card-body">
                         <h5 className="card-title">{product.itemName}</h5>

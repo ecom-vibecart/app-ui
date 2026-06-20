@@ -139,7 +139,7 @@ const ProductDetailPage = () => {
  
   useEffect(() => {
     const fetchOffersBySKU = async () => {
-      if (skuID) {
+      if (skuID && product) {
         try {
           const response = await axios.get(`${VIBECART_URI}/api/v1/vibe-cart/offers/sku/${skuID}`);
           const offers = response.data || [];
@@ -159,7 +159,7 @@ const ProductDetailPage = () => {
     };
 
     fetchOffersBySKU();
-  }, [skuID, product.price]);
+  }, [skuID, product]);
 
 
 
@@ -277,6 +277,7 @@ const ProductDetailPage = () => {
                   alt={`Thumbnail ${index + 1}`}
                   className={`thumbnail ${currentImage === url ? 'active' : ''}`}
                   onClick={() => setCurrentImage(url)}
+                  onError={(e) => { e.target.onerror = null; e.target.src = defaultImage; }}
                 />
               ))}
             </div>

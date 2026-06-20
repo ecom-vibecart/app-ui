@@ -592,6 +592,7 @@ const ProductPage = () => {
                               }
                               className="card-img-top"
                               alt={product.itemName || "Product"}
+                              onError={(e) => { e.target.onerror = null; e.target.src = defaultImage; }}
                             />
                           </div>
                           <div className="card-body bh">
