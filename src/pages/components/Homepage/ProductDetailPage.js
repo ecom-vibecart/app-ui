@@ -71,9 +71,9 @@ const ProductDetailPage = () => {
         const productData = response.data;
         dispatch(setSelectedProduct(productData));
         if (url === `${VIBECART_URI}/api/v1/vibe-cart/app/items/item/${productId}`) {
-          setCurrentImage(productData.imageURLs[0] ? `http://${productData.imageURLs[0]}` : defaultImage);
+          setCurrentImage(productData.imageURLs[0] ? productData.imageURLs[0] : defaultImage);
         } else {
-          setCurrentImage(productData.imageURL ? `http://${productData.imageURL}` : defaultImage);
+          setCurrentImage(productData.imageURL ? productData.imageURL : defaultImage);
         }
         setSkuID(productData.skuID || ''); // Set initial SKU ID if available
         setLoading(false);
@@ -97,7 +97,7 @@ const ProductDetailPage = () => {
           });
           const { skuID, imageURL } = response.data;
           setSkuID(skuID); // Update SKU ID
-          setCurrentImage(`http://${imageURL}`);
+          setCurrentImage(imageURL);
           const stockResponse = await axios.get(`${VIBECART_URI}/api/v1/vibe-cart/scm/inventory/quantity-by-sku`, {
             params: { sku: skuID }
           });
@@ -273,10 +273,10 @@ const ProductDetailPage = () => {
               {product.imageURLs?.map((url, index) => (
                 <img
                   key={index}
-                  src={`http://${url}`}
+                  src={url}
                   alt={`Thumbnail ${index + 1}`}
-                  className={`thumbnail ${currentImage === `http://${url}` ? 'active' : ''}`}
-                  onClick={() => setCurrentImage(`http://${url}`)}
+                  className={`thumbnail ${currentImage === url ? 'active' : ''}`}
+                  onClick={() => setCurrentImage(url)}
                 />
               ))}
             </div>

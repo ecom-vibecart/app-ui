@@ -101,7 +101,7 @@ const Navbar = () => {
                                         className="suggestion-item d-flex align-items-center"
                                     >
                                         <img
-                                            src={suggestion.imageURLs.length > 0 ? `http://${suggestion.imageURLs[0]}` : defaultImage}
+                                            src={suggestion.imageURLs.length > 0 ? suggestion.imageURLs[0] : defaultImage}
                                             alt={suggestion.itemName}
                                             className="suggestion-image"
                                         />

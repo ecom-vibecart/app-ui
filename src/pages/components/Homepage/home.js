@@ -192,7 +192,7 @@ const Home = () => {
                       <img
                         src={
                           product.imageURLs.length > 0
-                            ? `http://${product.imageURLs[0]}`
+                            ? product.imageURLs[0]
                             : defaultImage
                         }
                         className="card-img-top"

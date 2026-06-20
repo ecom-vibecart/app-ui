@@ -70,7 +70,7 @@ const Sale = () => {
                 <Link to={`/product/${product.itemID}`} className="text-decoration-none">
                   <div className="card product-card">
                     <img
-                      src={product.imageURLs.length > 0 ? `http://${product.imageURLs[0]}` : null}
+                      src={product.imageURLs.length > 0 ? product.imageURLs[0] : null}
                       className="card-img-top"
                       alt={product.itemName}
                     />
