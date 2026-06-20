@@ -1,1 +1,1 @@
-export const VIBECART_URI = `http://${window.location.hostname}:5001`;
+export const VIBECART_URI = process.env.REACT_APP_API_URL || `http://${window.location.hostname}:5001`;
