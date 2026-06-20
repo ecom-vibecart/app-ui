@@ -7,14 +7,26 @@ const MyOrders = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeOrder, setActiveOrder] = useState(null);
- 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
+    const token = sessionStorage.getItem('customerToken');
+    const customerInfo = JSON.parse(sessionStorage.getItem('customerInfo') || '{}');
+    if (!token || !customerInfo.id) {
+      setIsLoggedIn(false);
+      setLoading(false);
+      return;
+    }
+    setIsLoggedIn(true);
+
     const fetchOrders = async () => {
       try {
-        const response = await fetch(`${VIBECART_URI}/api/v1/vibe-cart/scm/orders/getAllOrders`);
+        const response = await fetch(`${VIBECART_URI}/api/v1/vibe-cart/scm/orders/customer/${customerInfo.id}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
         if (!response.ok) throw new Error('Network response was not ok');
         const result = await response.json();
- 
+
         if (result.success && Array.isArray(result.data)) {
           setOrders(result.data);
         } else {
@@ -27,7 +39,7 @@ const MyOrders = () => {
         setLoading(false);
       }
     };
- 
+
     fetchOrders();
   }, []);
  
@@ -36,6 +48,7 @@ const MyOrders = () => {
   };
  
   if (loading) return <div className="loading">Loading your orders...</div>;
+  if (!isLoggedIn) return <div className="error">Please <a href="/profile">log in</a> to view your orders.</div>;
   if (error) return <div className="error">{error}</div>;
  
   return (
