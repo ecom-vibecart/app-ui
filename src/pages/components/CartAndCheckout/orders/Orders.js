@@ -11,10 +11,7 @@ const MyOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const token = sessionStorage.getItem('customerToken');
-        const response = await fetch(`${VIBECART_URI}/api/v1/vibe-cart/scm/orders/getAllOrders`, {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
+        const response = await fetch(`${VIBECART_URI}/api/v1/vibe-cart/scm/orders/getAllOrders`);
         if (!response.ok) throw new Error('Network response was not ok');
         const result = await response.json();
  
