@@ -29,7 +29,7 @@ const Profile = () => {
     try {
       const { data } = await axios.post(
         `${VIBECART_URI}/api/v1/vibe-cart/accounts/validate?type=customer`,
-        { email, password, role: 'GUEST' }
+        { email, password }
       );
       const token = data.message || data.token || data.data?.token;
       if (!token) throw new Error('Invalid credentials');
