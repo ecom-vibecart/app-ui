@@ -11,6 +11,7 @@ import Orders from '../components/CartAndCheckout/orders/Orders'
 import Sale from '../components/Homepage/Sale';
 import OrderConfirmation from '../components/CartAndCheckout/orders/orderConfirmation';
 import TermsConditions from '../commoncomponents/TermsConditions';
+import Profile from '../components/Profile/Profile';
 
 
 export const Routing = () => {
@@ -20,17 +21,18 @@ export const Routing = () => {
         <Navbar />
       </div>
       <main className="content">
-      
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductPage />} />
-          <Route path="/product/:productId" element={<ProductDetailPage />} /> 
+          <Route path="/product/:productId" element={<ProductDetailPage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout/>} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/sale" element={<Sale />} />
           <Route path="/orderConfirmation" element={<OrderConfirmation/>} />
           <Route path="/terms" element={<TermsConditions/>} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </main>
       <div className="footerLayout">
