@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { LiaSpinnerSolid } from 'react-icons/lia';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { CustomLeftArrow, CustomRightArrow } from '../Homepage/CustomArrows'
@@ -11,6 +12,7 @@ import { VIBECART_URI } from '../../commoncomponents/service';
 
 const Sale = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
 
   const responsive = {
@@ -36,13 +38,15 @@ const Sale = () => {
   useEffect(() => {
     const query = new URLSearchParams(location.search).get('query');
     if (query) {
+      setLoading(true);
       axios.get(`${VIBECART_URI}/api/v1/vibe-cart/app/items/catalog/${query}`)
         .then((response) => {
           setProducts(response.data);
         })
         .catch((error) => {
           console.error('Error fetching sale products:', error);
-        });
+        })
+        .finally(() => setLoading(false));
     }
   }, [location.search]);
 
@@ -50,7 +54,11 @@ const Sale = () => {
     <section className="sale-products my-4">
       <div className="container">
         <h3>Sale Products</h3>
-        {products.length > 0 ? (
+        {loading ? (
+          <div className="text-center py-5">
+            <LiaSpinnerSolid size={50} className="spinner" />
+          </div>
+        ) : products.length > 0 ? (
           <Carousel
             responsive={responsive}
             containerClass="carousel-container"
@@ -79,7 +87,7 @@ const Sale = () => {
           </Carousel>
         ) : (
           <p>No products found.</p>
-        )}
+        ) }
       </div>
     </section>
   );
