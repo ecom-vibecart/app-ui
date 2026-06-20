@@ -587,7 +587,7 @@ const ProductPage = () => {
                             <img
                               src={
                                 product.imageURLs[0]
-                                  ? `http://${product.imageURLs[0]}`
+                                  ? product.imageURLs[0]
                                   : defaultImage
                               }
                               className="card-img-top"
