@@ -70,9 +70,10 @@ const Sale = () => {
                 <Link to={`/product/${product.itemID}`} className="text-decoration-none">
                   <div className="card product-card">
                     <img
-                      src={product.imageURLs.length > 0 ? product.imageURLs[0] : null}
+                      src={product.imageURLs.length > 0 ? product.imageURLs[0] : 'https://via.placeholder.com/400x300?text=No+Image'}
                       className="card-img-top"
                       alt={product.itemName}
+                      onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/400x300?text=No+Image'; }}
                     />
                     <div className="card-body">
                       <h5 className="card-title">{product.itemName}</h5>

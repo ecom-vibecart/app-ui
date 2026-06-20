@@ -197,6 +197,7 @@ const Home = () => {
                         }
                         className="card-img-top"
                         alt={product.itemName}
+                        onError={(e) => { e.target.onerror = null; e.target.src = defaultImage; }}
                       />
                       <div className="card-body">
                         <h5 className="card-title">{product.itemName}</h5>
